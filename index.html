@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Dapp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="harrypotter.css">
+
+    <title>Aryan DApp</title>
 </head>
 <body>
-    <h1>My Dapp</h1>
-    <p>Value1: <span id="value1"></span></p>
-    <p>Value2: <span id="value2"></span></p>
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <h1>Magical Calculator</h1>
+    <div>
+        <label for="operandA">Operand A:</label>
+        <input type="number" id="operandA">
+        <label for="operandB">Operand B:</label>
+        <input type="number" id="operandB">
+    </div>
+    <div>
+        <button onclick="performOperation('add')">Add</button>
+        <button onclick="performOperation('subtract')">Subtract</button>
+        <button onclick="performOperation('multiply')">Multiply</button>
+        <button onclick="performOperation('divide')">Divide</button>
+    </div>
+    <div>
+        <p>Result: <span id="result">Loading...</span></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

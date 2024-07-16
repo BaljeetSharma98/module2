@@ -1,16 +1,45 @@
-Metacrafters in this challenge, I have created MyContract Smart Contract
-Overview
-The MyContract smart contract is a simple example written in Solidity. It allows users to store and retrieve two values (value1 and value2). The contract includes functions to set and get these values.
+# Calculator DApp
+In This Project I created a simple Calculator DApp
+## Prerequisites
+- Node.js and npm installed
+- MetaMask extension installed in your browser ( import test ethers through ganache )
 
-Features
-Set Value 1: Users can set the value of value1.
-Set Value 2: Users can set the value of value2.
-Get Value 1: Users can retrieve the value of value1.
-Get Value 2: Users can retrieve the value of value2.
+## Deployment steps
 
-I have made a frontend using these files:
-index.html,
-app.js, 
-contract.sol, 
-style.css, 
-2_deploy_contract.js file
+1. First install Truffle (for compiling Smart Contract) and Ganache (for importing test ether into your metamask wallet & develop a local blockchain) -: 
+  *npm install -g truffle ganache-cli*
+   
+2. Initialize truffle project -: 
+   mkdir calculator-dapp
+   cd calculator-dapp
+   truffle init
+
+3. Create a file named *Calculator.sol* under contracts diretory.
+
+4. Then compile the contract using -:
+   *truffle compile*
+   then you got .json file which contains your *ABI*.
+
+5. Then open Ganache and select quickstart.
+
+6. Then write command in you project directory -:
+   *truffle migrate --network development*
+   then you got your *contract address* then paste it in app.js file.
+
+7. Making of Frontend -:
+   npm init -y
+   npm install lite-server --save-dev
+
+8. Then start the development server -:
+   npm start
+
+9. Now you are able to interact with your contract.
+
+
+## Authors
+
+Baljeet
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details

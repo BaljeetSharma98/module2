@@ -1,28 +1,27 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.5.16;
+pragma solidity ^0.5.16;
 
-contract MyContract {
-    uint256 public value1;
-    uint256 public value2;
+contract Calculator {
+    uint256 public result;
 
-    constructor(uint256 _value1, uint256 _value2) public {
-        value1 = _value1;
-        value2 = _value2;
+    function add(uint256 a, uint256 b) public {
+        result = a + b;
     }
 
-    function setValue1(uint256 _value1) public {
-        value1 = _value1;
+    function subtract(uint256 a, uint256 b) public {
+        result = a - b;
     }
 
-    function setValue2(uint256 _value2) public {
-        value2 = _value2;
+    function multiply(uint256 a, uint256 b) public {
+        result = a * b;
     }
 
-    function getValue1() public view returns (uint256) {
-        return value1;
+    function divide(uint256 a, uint256 b) public {
+        require(b != 0, "Cannot divide by zero");
+        result = a / b;
     }
 
-    function getValue2() public view returns (uint256) {
-        return value2;
+    function getResult() public view returns (uint256) {
+        return result;
     }
 }

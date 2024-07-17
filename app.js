@@ -1,115 +1,55 @@
-const contractAddress = '0x70b00CADD9E6000e28D4E1F5760D7CA02ab2285C'.trim();
+const contractAddress = '0xe9BDa60a62ADa51D14e2546dc73291cba1F565F1';
 const contractABI = [
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "result",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "a",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "b",
-          "type": "uint256"
-        }
-      ],
-      "name": "add",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "a",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "b",
-          "type": "uint256"
-        }
-      ],
-      "name": "subtract",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "a",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "b",
-          "type": "uint256"
-        }
-      ],
-      "name": "multiply",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "a",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "b",
-          "type": "uint256"
-        }
-      ],
-      "name": "divide",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "getResult",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    }
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "taxAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "taxRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "calculateTax",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getTaxAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
 ];
 
 async function load() {
@@ -131,13 +71,13 @@ async function load() {
     window.myContract = new web3.eth.Contract(contractABI, contractAddress);
     console.log('Contract:', window.myContract);
 
-    updateResult();
+    updateTaxAmount();
 }
 
-async function performOperation(operation) {
-    const a = document.getElementById('operandA').value;
-    const b = document.getElementById('operandB').value;
-    console.log(`Performing ${operation} on:`, a, b);
+async function calculateTax() {
+    const amount = document.getElementById('amount').value;
+    const taxRate = document.getElementById('taxRate').value;
+    console.log(`Calculating tax for amount: ${amount} with tax rate: ${taxRate}`);
 
     if (!window.myContract) {
         console.error('Contract not initialized');
@@ -145,21 +85,21 @@ async function performOperation(operation) {
     }
 
     try {
-        await window.myContract.methods[operation](a, b).send({ from: window.account });
-        console.log(`${operation} performed successfully`);
-        updateResult();
+        await window.myContract.methods.calculateTax(amount, taxRate).send({ from: window.account });
+        console.log('Tax calculation performed successfully');
+        updateTaxAmount();
     } catch (error) {
-        console.error(`Error performing ${operation}:`, error);
+        console.error('Error performing tax calculation:', error);
     }
 }
 
-async function updateResult() {
+async function updateTaxAmount() {
     try {
-        const result = await window.myContract.methods.getResult().call();
-        console.log('Result:', result);
-        document.getElementById('result').innerText = result;
+        const taxAmount = await window.myContract.methods.getTaxAmount().call();
+        console.log('Tax Amount:', taxAmount);
+        document.getElementById('taxAmount').innerText = taxAmount;
     } catch (error) {
-        console.error('Error getting result:', error);
+        console.error('Error getting tax amount:', error);
     }
 }
 

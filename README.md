@@ -1,11 +1,11 @@
-# Calculator DApp
-In This Project I created a simple Calculator DApp
+# Tax Calculator DApp
+In This Project I created a simple Tax Calculator DApp
 ## Prerequisites
 - Node.js and npm installed
 - MetaMask extension installed in your browser ( import test ethers through ganache )
 
- #Explanation
- The Calculator DApp is a decentralized application built using Solidity for smart contracts and Truffle for deployment. It includes basic arithmetic operations (addition, subtraction, multiplication, division) and maintains a result state variable. The project involves setting up a Truffle project, writing a smart contract (`Calculator.sol`), compiling it, and deploying it to a local blockchain using Ganache. A simple frontend is created to interact with the smart contract. The deployment script ensures smooth deployment of the contract. Once deployed, users can interact with the contract through the frontend to perform arithmetic operations.
+#Explanation
+The Tax Calculator DApp is a decentralized application built using Solidity for smart contracts and Truffle for deployment. It includes basic arithmetic operations and maintains a result state variable. The project involves setting up a Truffle project, writing a smart contract (`Calculator.sol`), compiling it, and deploying it to a local blockchain using Ganache. A simple frontend is created to interact with the smart contract. The deployment script ensures smooth deployment of the contract. Once deployed, users can interact with the contract through the frontend to perform arithmetic operations.
 
 ## Deployment steps
 
